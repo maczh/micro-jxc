@@ -1,0 +1,1187 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {},
+        "license": {},
+        "version": "1.0.0(jxc-order)"
+    },
+    "paths": {
+        "/delivery/del": {
+            "post": {
+                "description": "删除出库单记录接口",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "删除出库单记录接口",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "出库单记录号",
+                        "name": "id",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\\\"status\\\":1,\u003cbr\u003e\\\"msg\\\":\\\"成功\\\",\u003cbr\u003e\\\"data\\\":{},\u003cbr\u003e\\\"page\\\":null}",
+                        "schema": {
+                            "$ref": "#/definitions/common.Result"
+                        }
+                    }
+                }
+            }
+        },
+        "/delivery/get": {
+            "post": {
+                "description": "获取特定出库单的单一货品记录接口",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "获取特定出库单的单一货品记录接口",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "出库单记录号",
+                        "name": "id",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "商户账号",
+                        "name": "shopId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品编码",
+                        "name": "skuId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "出库单号",
+                        "name": "deliveryNo",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\\\"status\\\":1,\u003cbr\u003e\\\"msg\\\":\\\"成功\\\",\u003cbr\u003e\\\"data\\\":{},\u003cbr\u003e\\\"page\\\":null}",
+                        "schema": {
+                            "$ref": "#/definitions/model.StockDelivery"
+                        }
+                    }
+                }
+            }
+        },
+        "/delivery/list": {
+            "post": {
+                "description": "列出出库单",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "列出出库单接口",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "商户账号",
+                        "name": "shopId",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品编码",
+                        "name": "skuId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "出库单号",
+                        "name": "deliveryNo",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "外部销售单号",
+                        "name": "orderNo",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "客户账号",
+                        "name": "customerId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "商户仓库编号",
+                        "name": "storageId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "开始日期，格式为 yyyy-MM-dd",
+                        "name": "startTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "结束日期，格式为yyyy-MM-dd",
+                        "name": "endTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "分页页号参数，第几页，若要分页，页号\u003e=1，否则为0",
+                        "name": "page",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "分页大小参数",
+                        "name": "size",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\\\"status\\\":1,\u003cbr\u003e\\\"msg\\\":\\\"成功\\\",\u003cbr\u003e\\\"data\\\":{},\u003cbr\u003e\\\"page\\\":null}",
+                        "schema": {
+                            "$ref": "#/definitions/model.StockDelivery"
+                        }
+                    }
+                }
+            }
+        },
+        "/delivery/save": {
+            "post": {
+                "description": "保存出库单的单一货品记录接口",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "保存出库单的单一货品记录接口",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "商户账号",
+                        "name": "shopId",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品编码",
+                        "name": "skuId",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "出库单号",
+                        "name": "deliveryNo",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "出库类型",
+                        "name": "type",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品单位",
+                        "name": "unit",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "外部销售单号",
+                        "name": "orderNo",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "商户仓库编号",
+                        "name": "storageId",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "客户账号",
+                        "name": "customerId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "客户名称",
+                        "name": "customerName",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "操作员名称",
+                        "name": "operator",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "备注",
+                        "name": "remark",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "出库数量，必须大于0",
+                        "name": "number",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "成本均价，单位为分",
+                        "name": "cost",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "出库价，单位为分",
+                        "name": "price",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\\\"status\\\":1,\u003cbr\u003e\\\"msg\\\":\\\"成功\\\",\u003cbr\u003e\\\"data\\\":{},\u003cbr\u003e\\\"page\\\":null}",
+                        "schema": {
+                            "$ref": "#/definitions/model.StockDelivery"
+                        }
+                    }
+                }
+            }
+        },
+        "/delivery/update": {
+            "post": {
+                "description": "修改出库单的单一货品记录接口",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "修改出库单的单一货品记录接口",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "记录号",
+                        "name": "id",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品编码",
+                        "name": "skuId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品单位",
+                        "name": "unit",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "外部销售单号",
+                        "name": "orderNo",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "商户仓库编号",
+                        "name": "storageId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "客户账号",
+                        "name": "customerId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "客户名称",
+                        "name": "customerName",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "操作员名称",
+                        "name": "operator",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "备注",
+                        "name": "remark",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "出库数量，若需修改则大于0",
+                        "name": "number",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "成本均价，单位为分",
+                        "name": "cost",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "出库价，单位为分",
+                        "name": "price",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\\\"status\\\":1,\u003cbr\u003e\\\"msg\\\":\\\"成功\\\",\u003cbr\u003e\\\"data\\\":{},\u003cbr\u003e\\\"page\\\":null}",
+                        "schema": {
+                            "$ref": "#/definitions/model.StockDelivery"
+                        }
+                    }
+                }
+            }
+        },
+        "/entry/del": {
+            "post": {
+                "description": "删除入库单记录接口",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "删除入库单记录接口",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "入库单记录号",
+                        "name": "id",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\\\"status\\\":1,\u003cbr\u003e\\\"msg\\\":\\\"成功\\\",\u003cbr\u003e\\\"data\\\":{},\u003cbr\u003e\\\"page\\\":null}",
+                        "schema": {
+                            "$ref": "#/definitions/common.Result"
+                        }
+                    }
+                }
+            }
+        },
+        "/entry/get": {
+            "post": {
+                "description": "获取特定入库单的单一货品记录接口",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "获取特定入库单的单一货品记录接口",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "入库单记录号",
+                        "name": "id",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "商户账号",
+                        "name": "shopId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品编码",
+                        "name": "skuId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "入库单号",
+                        "name": "entryNo",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\\\"status\\\":1,\u003cbr\u003e\\\"msg\\\":\\\"成功\\\",\u003cbr\u003e\\\"data\\\":{},\u003cbr\u003e\\\"page\\\":null}",
+                        "schema": {
+                            "$ref": "#/definitions/model.StockEntry"
+                        }
+                    }
+                }
+            }
+        },
+        "/entry/list": {
+            "post": {
+                "description": "列出入库单",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "列出入库单接口",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "商户账号",
+                        "name": "shopId",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品编码",
+                        "name": "skuId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "入库单号",
+                        "name": "entryNo",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "外部销售单号",
+                        "name": "orderNo",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "客户账号",
+                        "name": "supplierId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "商户仓库编号",
+                        "name": "storageId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "开始日期，格式为 yyyy-MM-dd",
+                        "name": "startTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "结束日期，格式为yyyy-MM-dd",
+                        "name": "endTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "分页页号参数，第几页，若要分页，页号\u003e=1，否则为0",
+                        "name": "page",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "分页大小参数",
+                        "name": "size",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\\\"status\\\":1,\u003cbr\u003e\\\"msg\\\":\\\"成功\\\",\u003cbr\u003e\\\"data\\\":{},\u003cbr\u003e\\\"page\\\":null}",
+                        "schema": {
+                            "$ref": "#/definitions/model.StockEntry"
+                        }
+                    }
+                }
+            }
+        },
+        "/entry/save": {
+            "post": {
+                "description": "保存入库单的单一货品记录接口",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "保存入库单的单一货品记录接口",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "商户账号",
+                        "name": "shopId",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品编码",
+                        "name": "skuId",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "入库单号",
+                        "name": "entryNo",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "入库类型",
+                        "name": "type",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品单位",
+                        "name": "unit",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "外部销售单号",
+                        "name": "orderNo",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "商户仓库编号",
+                        "name": "storageId",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "客户账号",
+                        "name": "supplierId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "操作员名称",
+                        "name": "operator",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "备注",
+                        "name": "remark",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "入库数量，必须大于0",
+                        "name": "number",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "入库价，单位为分",
+                        "name": "price",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\\\"status\\\":1,\u003cbr\u003e\\\"msg\\\":\\\"成功\\\",\u003cbr\u003e\\\"data\\\":{},\u003cbr\u003e\\\"page\\\":null}",
+                        "schema": {
+                            "$ref": "#/definitions/model.StockEntry"
+                        }
+                    }
+                }
+            }
+        },
+        "/entry/update": {
+            "post": {
+                "description": "修改入库单的单一货品记录接口",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "修改入库单的单一货品记录接口",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "记录号",
+                        "name": "id",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品编码",
+                        "name": "skuId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品单位",
+                        "name": "unit",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "外部销售单号",
+                        "name": "orderNo",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "商户仓库编号",
+                        "name": "storageId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "客户账号",
+                        "name": "supplierId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "操作员名称",
+                        "name": "operator",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "备注",
+                        "name": "remark",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "入库数量，若需修改则大于0",
+                        "name": "number",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "入库价，单位为分",
+                        "name": "price",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\\\"status\\\":1,\u003cbr\u003e\\\"msg\\\":\\\"成功\\\",\u003cbr\u003e\\\"data\\\":{},\u003cbr\u003e\\\"page\\\":null}",
+                        "schema": {
+                            "$ref": "#/definitions/model.StockEntry"
+                        }
+                    }
+                }
+            }
+        },
+        "/move/del": {
+            "post": {
+                "description": "删除移库单记录接口",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "删除移库单接记录口",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "移库单记录号",
+                        "name": "id",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\\\"status\\\":1,\u003cbr\u003e\\\"msg\\\":\\\"成功\\\",\u003cbr\u003e\\\"data\\\":{},\u003cbr\u003e\\\"page\\\":null}",
+                        "schema": {
+                            "$ref": "#/definitions/common.Result"
+                        }
+                    }
+                }
+            }
+        },
+        "/move/get": {
+            "post": {
+                "description": "获取特定移库单的单一货品记录接口",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "获取特定移库单的单一货品记录接口",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "移库单记录号",
+                        "name": "id",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "商户账号",
+                        "name": "shopId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品编码",
+                        "name": "skuId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "移库单号",
+                        "name": "moveNo",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\\\"status\\\":1,\u003cbr\u003e\\\"msg\\\":\\\"成功\\\",\u003cbr\u003e\\\"data\\\":{},\u003cbr\u003e\\\"page\\\":null}",
+                        "schema": {
+                            "$ref": "#/definitions/model.StockMove"
+                        }
+                    }
+                }
+            }
+        },
+        "/move/list": {
+            "post": {
+                "description": "列出移库单",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "列出移库单接口",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "商户账号",
+                        "name": "shopId",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品编码",
+                        "name": "skuId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "移库单号",
+                        "name": "moveNo",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "移出仓库编号",
+                        "name": "fromStorageId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "移入仓库编号",
+                        "name": "toStorageId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "开始日期，格式为 yyyy-MM-dd",
+                        "name": "startTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "结束日期，格式为yyyy-MM-dd",
+                        "name": "endTime",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "分页页号参数，第几页，若要分页，页号\u003e=1，否则为0",
+                        "name": "page",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "分页大小参数",
+                        "name": "size",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\\\"status\\\":1,\u003cbr\u003e\\\"msg\\\":\\\"成功\\\",\u003cbr\u003e\\\"data\\\":{},\u003cbr\u003e\\\"page\\\":null}",
+                        "schema": {
+                            "$ref": "#/definitions/model.StockMove"
+                        }
+                    }
+                }
+            }
+        },
+        "/move/save": {
+            "post": {
+                "description": "保存移库单的单一货品记录接口",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "保存移库单的单一货品记录接口",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "商户账号",
+                        "name": "shopId",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品编码",
+                        "name": "skuId",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "移库单号",
+                        "name": "moveNo",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品单位",
+                        "name": "unit",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "移出仓库编号",
+                        "name": "fromStorageId",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "移入仓库编号",
+                        "name": "toStorageId",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "操作员名称",
+                        "name": "operator",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "备注",
+                        "name": "remark",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "移库数量，必须大于0",
+                        "name": "number",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\\\"status\\\":1,\u003cbr\u003e\\\"msg\\\":\\\"成功\\\",\u003cbr\u003e\\\"data\\\":{},\u003cbr\u003e\\\"page\\\":null}",
+                        "schema": {
+                            "$ref": "#/definitions/model.StockMove"
+                        }
+                    }
+                }
+            }
+        },
+        "/move/update": {
+            "post": {
+                "description": "修改移库单的单一货品记录接口",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "修改移库单的单一货品记录接口",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "记录号",
+                        "name": "id",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品编码",
+                        "name": "skuId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "货品单位",
+                        "name": "unit",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "移出仓库编号",
+                        "name": "fromStorageId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "移入仓库编号",
+                        "name": "toStorageId",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "操作员名称",
+                        "name": "operator",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "备注",
+                        "name": "remark",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "移库数量，若需修改则大于0",
+                        "name": "number",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\\\"status\\\":1,\u003cbr\u003e\\\"msg\\\":\\\"成功\\\",\u003cbr\u003e\\\"data\\\":{},\u003cbr\u003e\\\"page\\\":null}",
+                        "schema": {
+                            "$ref": "#/definitions/model.StockMove"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "common.Result": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "page": {
+                    "type": "ResultPage"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.StockDelivery": {
+            "type": "object",
+            "properties": {
+                "cost": {
+                    "type": "integer"
+                },
+                "customer_id": {
+                    "type": "string"
+                },
+                "customer_name": {
+                    "type": "string"
+                },
+                "delivery_no": {
+                    "type": "string"
+                },
+                "delivery_time": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "multi_storage": {
+                    "type": "string"
+                },
+                "number": {
+                    "type": "integer"
+                },
+                "operator": {
+                    "type": "string"
+                },
+                "order_no": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "remark": {
+                    "type": "string"
+                },
+                "shop_id": {
+                    "type": "string"
+                },
+                "sku_id": {
+                    "type": "string"
+                },
+                "storage_id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "unit": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.StockEntry": {
+            "type": "object",
+            "properties": {
+                "entry_no": {
+                    "type": "string"
+                },
+                "entry_time": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "number": {
+                    "type": "integer"
+                },
+                "operator": {
+                    "type": "string"
+                },
+                "order_no": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "remark": {
+                    "type": "string"
+                },
+                "shop_id": {
+                    "type": "string"
+                },
+                "sku_id": {
+                    "type": "string"
+                },
+                "storage_id": {
+                    "type": "string"
+                },
+                "supplier_id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "unit": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.StockMove": {
+            "type": "object",
+            "properties": {
+                "from_storage_id": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "move_no": {
+                    "type": "string"
+                },
+                "move_time": {
+                    "type": "string"
+                },
+                "number": {
+                    "type": "integer"
+                },
+                "operator": {
+                    "type": "string"
+                },
+                "remark": {
+                    "type": "string"
+                },
+                "shop_id": {
+                    "type": "string"
+                },
+                "sku_id": {
+                    "type": "string"
+                },
+                "to_storage_id": {
+                    "type": "string"
+                },
+                "unit": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

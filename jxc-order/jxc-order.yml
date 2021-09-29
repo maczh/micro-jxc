@@ -1,0 +1,26 @@
+go:
+  application:
+    name: jxc-order
+    port: 8133
+  nacos:
+    server: xxx.xxx.xxx.xxx
+    port: 8848
+    clusterName: DEFAULT
+    weight: 1
+  config:
+    server: http://xxx.xxx.xxx.xxx:8079/
+    env: test
+    type: .yml
+    mid: -go-
+    used: mongodb,mysql,redis,nacos
+    prefix:
+      mysql: mysql-jxc
+      mongodb: mongodb-jxc
+      redis: redis-jxc
+      ssdb: ssdb
+      rabbitmq: rabbitmq
+      nacos: nacos
+  log:
+    api:
+  logger:
+    level: debug

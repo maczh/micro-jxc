@@ -1,0 +1,193 @@
+definitions:
+  common.Result:
+    properties:
+      data:
+        type: object
+      msg:
+        type: string
+      page:
+        type: ResultPage
+      status:
+        type: integer
+    type: object
+  model.SkuStock:
+    properties:
+      base_unit:
+        type: string
+      cost_price:
+        type: integer
+      id:
+        type: integer
+      last_price:
+        type: integer
+      name:
+        type: string
+      product_id:
+        type: string
+      shop_id:
+        type: string
+      sku_id:
+        type: string
+      stocks:
+        type: integer
+      storage_id:
+        type: string
+      update_time:
+        type: string
+    type: object
+info:
+  contact: {}
+  license: {}
+  version: 1.0.0(jxc-stock)
+paths:
+  /stock/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 获取货品在特定仓库中的库存信息
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        required: true
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.SkuStock'
+      summary: 获取货品在特定仓库中的库存信息
+  /stock/inout:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 货品入库/出库接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        required: true
+        type: string
+      - description: 入库/出库的货品单位
+        in: formData
+        name: unit
+        required: true
+        type: string
+      - description: 入库/出库的货品数量
+        in: formData
+        name: number
+        required: true
+        type: integer
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        required: true
+        type: string
+      - description: 本次入库的货品强制设定加权均价，不传时由系统计算
+        in: formData
+        name: cost
+        type: integer
+      - description: 本次入库的货品进货价
+        in: formData
+        name: price
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.SkuStock'
+      summary: 货品入库/出库接口
+  /stock/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出商品/货品的库存
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        type: string
+      - description: 搜索关键字，从商品名称中查询
+        in: formData
+        name: name
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        type: string
+      - description: 分页页号参数，第几页，若要分页，页号>=1，否则为0
+        in: formData
+        name: page
+        type: integer
+      - description: 分页大小参数
+        in: formData
+        name: size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.SkuStock'
+      summary: 列出商品/货品的库存接口
+  /stock/num:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 获取指定货品/商品的库存量
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品自定义编号
+        in: formData
+        name: skuId
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 获取指定货品/商品的库存量
+swagger: "2.0"

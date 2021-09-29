@@ -1,0 +1,790 @@
+definitions:
+  common.Result:
+    properties:
+      data:
+        type: object
+      msg:
+        type: string
+      page:
+        type: ResultPage
+      status:
+        type: integer
+    type: object
+  model.StockDelivery:
+    properties:
+      cost:
+        type: integer
+      customer_id:
+        type: string
+      customer_name:
+        type: string
+      delivery_no:
+        type: string
+      delivery_time:
+        type: string
+      id:
+        type: integer
+      multi_storage:
+        type: string
+      number:
+        type: integer
+      operator:
+        type: string
+      order_no:
+        type: string
+      price:
+        type: integer
+      remark:
+        type: string
+      shop_id:
+        type: string
+      sku_id:
+        type: string
+      storage_id:
+        type: string
+      type:
+        type: string
+      unit:
+        type: string
+    type: object
+  model.StockEntry:
+    properties:
+      entry_no:
+        type: string
+      entry_time:
+        type: string
+      id:
+        type: integer
+      number:
+        type: integer
+      operator:
+        type: string
+      order_no:
+        type: string
+      price:
+        type: integer
+      remark:
+        type: string
+      shop_id:
+        type: string
+      sku_id:
+        type: string
+      storage_id:
+        type: string
+      supplier_id:
+        type: string
+      type:
+        type: string
+      unit:
+        type: string
+    type: object
+  model.StockMove:
+    properties:
+      from_storage_id:
+        type: string
+      id:
+        type: integer
+      move_no:
+        type: string
+      move_time:
+        type: string
+      number:
+        type: integer
+      operator:
+        type: string
+      remark:
+        type: string
+      shop_id:
+        type: string
+      sku_id:
+        type: string
+      to_storage_id:
+        type: string
+      unit:
+        type: string
+    type: object
+info:
+  contact: {}
+  license: {}
+  version: 1.0.0(jxc-order)
+paths:
+  /delivery/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除出库单记录接口
+      parameters:
+      - description: 出库单记录号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除出库单记录接口
+  /delivery/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 获取特定出库单的单一货品记录接口
+      parameters:
+      - description: 出库单记录号
+        in: formData
+        name: id
+        type: integer
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        type: string
+      - description: 出库单号
+        in: formData
+        name: deliveryNo
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockDelivery'
+      summary: 获取特定出库单的单一货品记录接口
+  /delivery/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出出库单
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        type: string
+      - description: 出库单号
+        in: formData
+        name: deliveryNo
+        type: string
+      - description: 外部销售单号
+        in: formData
+        name: orderNo
+        type: string
+      - description: 客户账号
+        in: formData
+        name: customerId
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        type: string
+      - description: 开始日期，格式为 yyyy-MM-dd
+        in: formData
+        name: startTime
+        type: string
+      - description: 结束日期，格式为yyyy-MM-dd
+        in: formData
+        name: endTime
+        type: string
+      - description: 分页页号参数，第几页，若要分页，页号>=1，否则为0
+        in: formData
+        name: page
+        type: integer
+      - description: 分页大小参数
+        in: formData
+        name: size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockDelivery'
+      summary: 列出出库单接口
+  /delivery/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存出库单的单一货品记录接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        required: true
+        type: string
+      - description: 出库单号
+        in: formData
+        name: deliveryNo
+        required: true
+        type: string
+      - description: 出库类型
+        in: formData
+        name: type
+        required: true
+        type: string
+      - description: 货品单位
+        in: formData
+        name: unit
+        required: true
+        type: string
+      - description: 外部销售单号
+        in: formData
+        name: orderNo
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        required: true
+        type: string
+      - description: 客户账号
+        in: formData
+        name: customerId
+        type: string
+      - description: 客户名称
+        in: formData
+        name: customerName
+        type: string
+      - description: 操作员名称
+        in: formData
+        name: operator
+        required: true
+        type: string
+      - description: 备注
+        in: formData
+        name: remark
+        type: string
+      - description: 出库数量，必须大于0
+        in: formData
+        name: number
+        required: true
+        type: integer
+      - description: 成本均价，单位为分
+        in: formData
+        name: cost
+        type: integer
+      - description: 出库价，单位为分
+        in: formData
+        name: price
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockDelivery'
+      summary: 保存出库单的单一货品记录接口
+  /delivery/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改出库单的单一货品记录接口
+      parameters:
+      - description: 记录号
+        in: formData
+        name: id
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        type: string
+      - description: 货品单位
+        in: formData
+        name: unit
+        type: string
+      - description: 外部销售单号
+        in: formData
+        name: orderNo
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        type: string
+      - description: 客户账号
+        in: formData
+        name: customerId
+        type: string
+      - description: 客户名称
+        in: formData
+        name: customerName
+        type: string
+      - description: 操作员名称
+        in: formData
+        name: operator
+        type: string
+      - description: 备注
+        in: formData
+        name: remark
+        type: string
+      - description: 出库数量，若需修改则大于0
+        in: formData
+        name: number
+        type: integer
+      - description: 成本均价，单位为分
+        in: formData
+        name: cost
+        type: integer
+      - description: 出库价，单位为分
+        in: formData
+        name: price
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockDelivery'
+      summary: 修改出库单的单一货品记录接口
+  /entry/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除入库单记录接口
+      parameters:
+      - description: 入库单记录号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除入库单记录接口
+  /entry/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 获取特定入库单的单一货品记录接口
+      parameters:
+      - description: 入库单记录号
+        in: formData
+        name: id
+        type: integer
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        type: string
+      - description: 入库单号
+        in: formData
+        name: entryNo
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockEntry'
+      summary: 获取特定入库单的单一货品记录接口
+  /entry/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出入库单
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        type: string
+      - description: 入库单号
+        in: formData
+        name: entryNo
+        type: string
+      - description: 外部销售单号
+        in: formData
+        name: orderNo
+        type: string
+      - description: 客户账号
+        in: formData
+        name: supplierId
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        type: string
+      - description: 开始日期，格式为 yyyy-MM-dd
+        in: formData
+        name: startTime
+        type: string
+      - description: 结束日期，格式为yyyy-MM-dd
+        in: formData
+        name: endTime
+        type: string
+      - description: 分页页号参数，第几页，若要分页，页号>=1，否则为0
+        in: formData
+        name: page
+        type: integer
+      - description: 分页大小参数
+        in: formData
+        name: size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockEntry'
+      summary: 列出入库单接口
+  /entry/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存入库单的单一货品记录接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        required: true
+        type: string
+      - description: 入库单号
+        in: formData
+        name: entryNo
+        required: true
+        type: string
+      - description: 入库类型
+        in: formData
+        name: type
+        required: true
+        type: string
+      - description: 货品单位
+        in: formData
+        name: unit
+        required: true
+        type: string
+      - description: 外部销售单号
+        in: formData
+        name: orderNo
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        required: true
+        type: string
+      - description: 客户账号
+        in: formData
+        name: supplierId
+        type: string
+      - description: 操作员名称
+        in: formData
+        name: operator
+        required: true
+        type: string
+      - description: 备注
+        in: formData
+        name: remark
+        type: string
+      - description: 入库数量，必须大于0
+        in: formData
+        name: number
+        required: true
+        type: integer
+      - description: 入库价，单位为分
+        in: formData
+        name: price
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockEntry'
+      summary: 保存入库单的单一货品记录接口
+  /entry/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改入库单的单一货品记录接口
+      parameters:
+      - description: 记录号
+        in: formData
+        name: id
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        type: string
+      - description: 货品单位
+        in: formData
+        name: unit
+        type: string
+      - description: 外部销售单号
+        in: formData
+        name: orderNo
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        type: string
+      - description: 客户账号
+        in: formData
+        name: supplierId
+        type: string
+      - description: 操作员名称
+        in: formData
+        name: operator
+        type: string
+      - description: 备注
+        in: formData
+        name: remark
+        type: string
+      - description: 入库数量，若需修改则大于0
+        in: formData
+        name: number
+        type: integer
+      - description: 入库价，单位为分
+        in: formData
+        name: price
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockEntry'
+      summary: 修改入库单的单一货品记录接口
+  /move/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除移库单记录接口
+      parameters:
+      - description: 移库单记录号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除移库单接记录口
+  /move/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 获取特定移库单的单一货品记录接口
+      parameters:
+      - description: 移库单记录号
+        in: formData
+        name: id
+        type: integer
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        type: string
+      - description: 移库单号
+        in: formData
+        name: moveNo
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockMove'
+      summary: 获取特定移库单的单一货品记录接口
+  /move/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出移库单
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        type: string
+      - description: 移库单号
+        in: formData
+        name: moveNo
+        type: string
+      - description: 移出仓库编号
+        in: formData
+        name: fromStorageId
+        type: string
+      - description: 移入仓库编号
+        in: formData
+        name: toStorageId
+        type: string
+      - description: 开始日期，格式为 yyyy-MM-dd
+        in: formData
+        name: startTime
+        type: string
+      - description: 结束日期，格式为yyyy-MM-dd
+        in: formData
+        name: endTime
+        type: string
+      - description: 分页页号参数，第几页，若要分页，页号>=1，否则为0
+        in: formData
+        name: page
+        type: integer
+      - description: 分页大小参数
+        in: formData
+        name: size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockMove'
+      summary: 列出移库单接口
+  /move/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存移库单的单一货品记录接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        required: true
+        type: string
+      - description: 移库单号
+        in: formData
+        name: moveNo
+        required: true
+        type: string
+      - description: 货品单位
+        in: formData
+        name: unit
+        required: true
+        type: string
+      - description: 移出仓库编号
+        in: formData
+        name: fromStorageId
+        required: true
+        type: string
+      - description: 移入仓库编号
+        in: formData
+        name: toStorageId
+        required: true
+        type: string
+      - description: 操作员名称
+        in: formData
+        name: operator
+        required: true
+        type: string
+      - description: 备注
+        in: formData
+        name: remark
+        type: string
+      - description: 移库数量，必须大于0
+        in: formData
+        name: number
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockMove'
+      summary: 保存移库单的单一货品记录接口
+  /move/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改移库单的单一货品记录接口
+      parameters:
+      - description: 记录号
+        in: formData
+        name: id
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        type: string
+      - description: 货品单位
+        in: formData
+        name: unit
+        type: string
+      - description: 移出仓库编号
+        in: formData
+        name: fromStorageId
+        type: string
+      - description: 移入仓库编号
+        in: formData
+        name: toStorageId
+        type: string
+      - description: 操作员名称
+        in: formData
+        name: operator
+        type: string
+      - description: 备注
+        in: formData
+        name: remark
+        type: string
+      - description: 移库数量，若需修改则大于0
+        in: formData
+        name: number
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockMove'
+      summary: 修改移库单的单一货品记录接口
+swagger: "2.0"

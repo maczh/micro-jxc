@@ -1,0 +1,1205 @@
+definitions:
+  common.Result:
+    properties:
+      data:
+        type: object
+      msg:
+        type: string
+      page:
+        type: ResultPage
+      status:
+        type: integer
+    type: object
+  model.ProductCategory:
+    properties:
+      category_id:
+        type: string
+      id:
+        type: integer
+      level:
+        type: integer
+      name:
+        type: string
+      parent_id:
+        type: string
+      shop_id:
+        type: string
+      sort_number:
+        type: integer
+    type: object
+  model.ProductInfo:
+    properties:
+      bar_code:
+        type: string
+      base_unit:
+        type: string
+      category_id:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      pinyin_first:
+        type: string
+      pinyin_full:
+        type: string
+      product_id:
+        type: string
+      shop_id:
+        type: string
+    type: object
+  model.ProductSku:
+    properties:
+      barCode:
+        type: string
+      baseUnit:
+        type: string
+      categoryId:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      pinyinFirst:
+        type: string
+      pinyinFull:
+        type: string
+      priceList:
+        additionalProperties:
+          $ref: '#/definitions/string'
+        type: object
+      productId:
+        type: string
+      shopId:
+        type: string
+      sku:
+        additionalProperties:
+          $ref: '#/definitions/string'
+        type: object
+      skuGuid:
+        type: string
+      skuId:
+        type: string
+      skuName:
+        type: string
+      sortNumber:
+        type: integer
+      status:
+        type: integer
+    type: object
+  model.ProductSpecs:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      product_id:
+        type: string
+      shop_id:
+        type: string
+      values:
+        type: string
+    type: object
+  model.ProductSupplier:
+    properties:
+      id:
+        type: integer
+      product_id:
+        type: string
+      shop_id:
+        type: string
+      supplier_id:
+        type: string
+      supplier_name:
+        type: string
+    type: object
+  model.ProductUnit:
+    properties:
+      base_unit:
+        type: string
+      id:
+        type: integer
+      product_id:
+        type: string
+      scale:
+        type: integer
+      shop_id:
+        type: string
+      unit:
+        type: string
+    type: object
+info:
+  contact: {}
+  license: {}
+  version: 1.0.0(jxc-product)
+paths:
+  /category/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除商品分类接口
+      parameters:
+      - description: 商品分类记录号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除商品分类接口
+  /category/down:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 下移商品分类接口
+      parameters:
+      - description: 商品分类记录号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductCategory'
+      summary: 下移商品分类接口
+  /category/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 查询商品分类接口
+      parameters:
+      - description: 商品分类记录号
+        in: formData
+        name: id
+        type: integer
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 商品分类自定义编号
+        in: formData
+        name: categoryId
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductCategory'
+      summary: 查询商品分类接口
+  /category/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 按菜单层级方式或路径方式列出商品分类
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 商品分类号，按编号查完整分类路径
+        in: formData
+        name: categoryId
+        type: string
+      - description: 上级分类编号
+        in: formData
+        name: parent
+        type: string
+      - description: 分类层级
+        in: formData
+        name: level
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductCategory'
+      summary: 列出商品的所有商品分类接口
+  /category/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存商品分类接口
+      parameters:
+      - description: 商户账户
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品分类名称
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: 商品分类自定义编号,默认自动生成
+        in: formData
+        name: categoryId
+        type: string
+      - description: 上级分类编号，第一级无上级分类的填0
+        in: formData
+        name: parent
+        required: true
+        type: string
+      - description: 商品分类层级，从第1级向下
+        in: formData
+        name: level
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductCategory'
+      summary: 保存商品分类接口
+  /category/up:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 上移商品分类接口
+      parameters:
+      - description: 商品分类记录号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductCategory'
+      summary: 上移商品分类接口
+  /category/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改商品分类接口
+      parameters:
+      - description: 商品分类编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: 商品分类名称
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: 商品分类自定义编号
+        in: formData
+        name: categoryId
+        type: string
+      - description: 上级分类编号，第一级无上级分类的填0
+        in: formData
+        name: parent
+        type: string
+      - description: 商品分类层级，从第1级向下
+        in: formData
+        name: level
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductCategory'
+      summary: 修改商品分类接口
+  /product/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除商品信息接口
+      parameters:
+      - description: 商品编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除商品信息接口
+  /product/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 查询商品信息接口
+      parameters:
+      - description: 商品记录号
+        in: formData
+        name: id
+        type: integer
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 商品自定义编号
+        in: formData
+        name: productId
+        type: string
+      - description: 商品条码
+        in: formData
+        name: barCode
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductInfo'
+      summary: 查询商品信息接口
+  /product/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出商品信息接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 模糊搜索关键字：商品名称/全拼(小写)/拼音首字母(大写)
+        in: formData
+        name: keyword
+        type: string
+      - description: 商品分类编号
+        in: formData
+        name: categoryId
+        type: string
+      - description: 分页页号参数，第几页，若要分页，页号>=1，否则为0
+        in: formData
+        name: page
+        type: integer
+      - description: 分页大小参数
+        in: formData
+        name: size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductInfo'
+      summary: 列出商品信息接口
+  /product/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存商品信息接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品分类编号
+        in: formData
+        name: categoryId
+        required: true
+        type: string
+      - description: 商品名称
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: 商品自定义编号，默认系统自动生成
+        in: formData
+        name: productId
+        type: string
+      - description: 商品条码
+        in: formData
+        name: barCode
+        type: string
+      - description: 商品基础单位，最小单位
+        in: formData
+        name: baseUnit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductInfo'
+      summary: 保存商品信息接口
+  /product/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改商品信息接口
+      parameters:
+      - description: 商品编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: 商品分类编码
+        in: formData
+        name: categoryId
+        type: string
+      - description: 商品自定义编号
+        in: formData
+        name: productId
+        type: string
+      - description: 商品名称
+        in: formData
+        name: name
+        type: string
+      - description: 商品基础单位，最小单位
+        in: formData
+        name: baseUnit
+        type: string
+      - description: 商品条码
+        in: formData
+        name: barCode
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductInfo'
+      summary: 修改商品信息接口
+  /sku/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除货品接口
+      parameters:
+      - description: 货品全局编码
+        in: formData
+        name: skuGuid
+        type: string
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 货品自定义编码
+        in: formData
+        name: skuId
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除货品接口
+  /sku/down:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 下移货品接口
+      parameters:
+      - description: 货品全局编码
+        in: formData
+        name: skuGuid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSku'
+      summary: 下移货品接口
+  /sku/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 查询货品接口
+      parameters:
+      - description: 货品全局编码
+        in: formData
+        name: skuGuid
+        type: string
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 货品自定义编码
+        in: formData
+        name: skuId
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSku'
+      summary: 查询货品接口
+  /sku/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 按自由组合方式与关键字模糊查询方式列出货品
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 搜索关键字，从商品名称、全拼、拼音首字母
+        in: formData
+        name: keyword
+        type: string
+      - description: 商品规格，JSON格式
+        in: formData
+        name: specs
+        type: string
+      - description: 商品分类编号
+        in: formData
+        name: categoryId
+        type: integer
+      - description: 商品编号
+        in: formData
+        name: productId
+        type: integer
+      - description: 货品上架状态
+        in: formData
+        name: status
+        type: integer
+      - description: 分页页号参数，第几页，若要分页，页号>=1，否则为0
+        in: formData
+        name: page
+        type: integer
+      - description: 分页大小参数
+        in: formData
+        name: size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSku'
+      summary: 列出商品的所有货品接口
+  /sku/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存货品接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        required: true
+        type: integer
+      - description: 货品规格，JSON格式，{<规格名>:<格式值>}
+        in: formData
+        name: specs
+        required: true
+        type: string
+      - description: 货品自定义编码，不传则自动随机生成
+        in: formData
+        name: skuId
+        type: string
+      - description: 货品全局唯一编码，默认不传，随机生成32位码
+        in: formData
+        name: skuGuid
+        type: string
+      - description: 货品名称，默认为商品名+规格值
+        in: formData
+        name: name
+        type: string
+      - description: 货品报价表，JSON格式
+        in: formData
+        name: prices
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSku'
+      summary: 保存货品接口
+  /sku/up:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 上移货品接口
+      parameters:
+      - description: 货品全局编码
+        in: formData
+        name: skuGuid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSku'
+      summary: 上移货品接口
+  /sku/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改货品接口
+      parameters:
+      - description: 货品全局唯一编码
+        in: formData
+        name: skuGuid
+        required: true
+        type: string
+      - description: 货品自定义编码，不传则自动随机生成
+        in: formData
+        name: skuId
+        type: string
+      - description: 商品名称
+        in: formData
+        name: name
+        type: string
+      - description: 货品名称
+        in: formData
+        name: skuName
+        type: string
+      - description: 货品条码
+        in: formData
+        name: barCode
+        type: string
+      - description: 货品规格，JSON格式，{<规格名>:<格式值>}
+        in: formData
+        name: specs
+        required: true
+        type: string
+      - description: 货品报价表，JSON格式
+        in: formData
+        name: prices
+        type: string
+      - description: 货品状态，0-禁售 1-可售
+        in: formData
+        name: status
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSku'
+      summary: 修改货品接口
+  /specs/add:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 添加商品规格值接口
+      parameters:
+      - description: 商品规格编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: 单个商品规格值
+        in: formData
+        name: value
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSpecs'
+      summary: 添加商品规格值接口
+  /specs/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除商品规格指标接口
+      parameters:
+      - description: 商品规格编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除商品规格指标接口
+  /specs/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 查询商品的规格指标接口
+      parameters:
+      - description: 商品规格编号
+        in: formData
+        name: id
+        type: integer
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        type: string
+      - description: 商品规格名
+        in: formData
+        name: specs
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSpecs'
+      summary: 查询商品的规格指标接口
+  /specs/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出商品的所有规格指标接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品自定义编码
+        in: formData
+        name: productId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSpecs'
+      summary: 列出商品的所有规格指标接口
+  /specs/remove:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 移除商品规格值接口
+      parameters:
+      - description: 商品规格编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: 要移除的单个商品规格值
+        in: formData
+        name: value
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSpecs'
+      summary: 移除商品规格值接口
+  /specs/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存规格指标接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        required: true
+        type: string
+      - description: 商品规格名
+        in: formData
+        name: specs
+        required: true
+        type: string
+      - description: 商品规格值列表，JSON数组格式
+        in: formData
+        name: values
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSpecs'
+      summary: 保存规格指标接口
+  /specs/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改商品规格指标接口
+      parameters:
+      - description: 商品规格编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        type: string
+      - description: 商品规格名
+        in: formData
+        name: specs
+        type: string
+      - description: 商品规格值列表，JSON数组格式
+        in: formData
+        name: values
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSpecs'
+      summary: 修改商品规格指标接口
+  /supplier/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除商品供应商接口
+      parameters:
+      - description: 商品供应商编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除商品供应商接口
+  /supplier/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 查询商品的供应商接口
+      parameters:
+      - description: 商品供应商记录号
+        in: formData
+        name: id
+        type: integer
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        type: string
+      - description: 商品供应商账号
+        in: formData
+        name: supplierId
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSupplier'
+      summary: 查询商品的供应商接口
+  /supplier/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出商品的所有供应商接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSupplier'
+      summary: 列出商品的所有供应商接口
+  /supplier/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存供应商接口
+      parameters:
+      - description: 商品编号
+        in: formData
+        name: productId
+        required: true
+        type: string
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品供应商账号
+        in: formData
+        name: supplierId
+        required: true
+        type: string
+      - description: 商品供应商名称
+        in: formData
+        name: supplierName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSupplier'
+      summary: 保存供应商接口
+  /supplier/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改商品供应商接口
+      parameters:
+      - description: 商品供应商id
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: 商品编号
+        in: formData
+        name: productId
+        type: string
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 商品供应商账号
+        in: formData
+        name: supplierId
+        type: string
+      - description: 商品供应商名称
+        in: formData
+        name: supplierName
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSupplier'
+      summary: 修改商品供应商接口
+  /unit/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除商品单位换算规则接口
+      parameters:
+      - description: 商品单位换算编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除商品单位换算规则接口
+  /unit/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 查询商品的单位换算规则接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        required: true
+        type: string
+      - description: 商品辅助单位，较大的单位
+        in: formData
+        name: unit
+        required: true
+        type: string
+      - description: 商品基础单位，最小单位
+        in: formData
+        name: baseUnit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductUnit'
+      summary: 查询商品的单位换算规则接口
+  /unit/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出商品的所有单位换算规则接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductUnit'
+      summary: 列出商品的所有单位换算规则接口
+  /unit/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存单位换算规则接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        required: true
+        type: string
+      - description: '商品单位换算比例值: 1辅助单位=scale个基础单位'
+        in: formData
+        name: scale
+        required: true
+        type: integer
+      - description: 商品辅助单位，较大的单位
+        in: formData
+        name: unit
+        required: true
+        type: string
+      - description: 商品基础单位，最小单位
+        in: formData
+        name: baseUnit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductUnit'
+      summary: 保存单位换算规则接口
+  /unit/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改商品单位换算规则接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        required: true
+        type: string
+      - description: '商品单位换算比例值: 1辅助单位=scale个基础单位'
+        in: formData
+        name: scale
+        required: true
+        type: integer
+      - description: 商品辅助单位，较大的单位
+        in: formData
+        name: unit
+        required: true
+        type: string
+      - description: 商品基础单位，最小单位
+        in: formData
+        name: baseUnit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductUnit'
+      summary: 修改商品单位换算规则接口
+swagger: "2.0"

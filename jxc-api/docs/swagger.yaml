@@ -1,0 +1,2992 @@
+definitions:
+  common.Result:
+    properties:
+      data:
+        type: object
+      msg:
+        type: string
+      page:
+        type: ResultPage
+      status:
+        type: integer
+    type: object
+  model.DeliveryType:
+    properties:
+      id:
+        type: integer
+      shop_id:
+        type: string
+      type:
+        type: string
+    type: object
+  model.EntryType:
+    properties:
+      id:
+        type: integer
+      shop_id:
+        type: string
+      type:
+        type: string
+    type: object
+  model.ProductCategory:
+    properties:
+      category_id:
+        type: string
+      id:
+        type: integer
+      level:
+        type: integer
+      name:
+        type: string
+      parent_id:
+        type: string
+      shop_id:
+        type: string
+      sort_number:
+        type: integer
+    type: object
+  model.ProductInfo:
+    properties:
+      bar_code:
+        type: string
+      base_unit:
+        type: string
+      category_id:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      pinyin_first:
+        type: string
+      pinyin_full:
+        type: string
+      product_id:
+        type: string
+      shop_id:
+        type: string
+    type: object
+  model.ProductSku:
+    properties:
+      barCode:
+        type: string
+      baseUnit:
+        type: string
+      categoryId:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      pinyinFirst:
+        type: string
+      pinyinFull:
+        type: string
+      priceList:
+        additionalProperties:
+          $ref: '#/definitions/string'
+        type: object
+      productId:
+        type: string
+      shopId:
+        type: string
+      sku:
+        additionalProperties:
+          $ref: '#/definitions/string'
+        type: object
+      skuGuid:
+        type: string
+      skuId:
+        type: string
+      skuName:
+        type: string
+      sortNumber:
+        type: integer
+      status:
+        type: integer
+    type: object
+  model.ProductSpecs:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      product_id:
+        type: string
+      shop_id:
+        type: string
+      values:
+        type: string
+    type: object
+  model.ProductSupplier:
+    properties:
+      id:
+        type: integer
+      product_id:
+        type: string
+      shop_id:
+        type: string
+      supplier_id:
+        type: string
+      supplier_name:
+        type: string
+    type: object
+  model.ProductUnit:
+    properties:
+      base_unit:
+        type: string
+      id:
+        type: integer
+      product_id:
+        type: string
+      scale:
+        type: integer
+      shop_id:
+        type: string
+      unit:
+        type: string
+    type: object
+  model.ShopStorage:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      remark:
+        type: string
+      shop_id:
+        type: string
+      sort_number:
+        type: integer
+      storage_id:
+        type: string
+    type: object
+  model.SkuStock:
+    properties:
+      base_unit:
+        type: string
+      cost_price:
+        type: integer
+      id:
+        type: integer
+      last_price:
+        type: integer
+      name:
+        type: string
+      product_id:
+        type: string
+      shop_id:
+        type: string
+      sku_id:
+        type: string
+      stocks:
+        type: integer
+      storage_id:
+        type: string
+      update_time:
+        type: string
+    type: object
+  model.StockDelivery:
+    properties:
+      cost:
+        type: integer
+      customer_id:
+        type: string
+      customer_name:
+        type: string
+      delivery_no:
+        type: string
+      delivery_time:
+        type: string
+      id:
+        type: integer
+      multi_storage:
+        type: string
+      number:
+        type: integer
+      operator:
+        type: string
+      order_no:
+        type: string
+      price:
+        type: integer
+      remark:
+        type: string
+      shop_id:
+        type: string
+      sku_id:
+        type: string
+      storage_id:
+        type: string
+      type:
+        type: string
+      unit:
+        type: string
+    type: object
+  model.StockEntry:
+    properties:
+      entry_no:
+        type: string
+      entry_time:
+        type: string
+      id:
+        type: integer
+      number:
+        type: integer
+      operator:
+        type: string
+      order_no:
+        type: string
+      price:
+        type: integer
+      remark:
+        type: string
+      shop_id:
+        type: string
+      sku_id:
+        type: string
+      storage_id:
+        type: string
+      supplier_id:
+        type: string
+      type:
+        type: string
+      unit:
+        type: string
+    type: object
+  model.StockMove:
+    properties:
+      from_storage_id:
+        type: string
+      id:
+        type: integer
+      move_no:
+        type: string
+      move_time:
+        type: string
+      number:
+        type: integer
+      operator:
+        type: string
+      remark:
+        type: string
+      shop_id:
+        type: string
+      sku_id:
+        type: string
+      to_storage_id:
+        type: string
+      unit:
+        type: string
+    type: object
+  model.Unit:
+    properties:
+      id:
+        type: integer
+      shop_id:
+        type: string
+      unit:
+        type: string
+    type: object
+  vo.SkuStockNote:
+    properties:
+      bar_code:
+        type: string
+      base_unit:
+        type: string
+      category_id:
+        type: string
+      category_name:
+        type: string
+      cost_price:
+        type: integer
+      id:
+        type: integer
+      last_price:
+        type: integer
+      name:
+        type: string
+      price_list:
+        additionalProperties:
+          $ref: '#/definitions/string'
+        type: object
+      product_id:
+        type: string
+      shop_id:
+        type: string
+      sku_id:
+        type: string
+      sku_name:
+        type: string
+      sku_specs:
+        additionalProperties:
+          $ref: '#/definitions/string'
+        type: object
+      stocks:
+        type: integer
+      storage_id:
+        type: string
+      storage_name:
+        type: string
+      update_time:
+        type: string
+    type: object
+  vo.StockDeliveryNote:
+    properties:
+      delivery_no:
+        type: string
+      delivery_time:
+        type: string
+      id:
+        description: 第一条记录的ID
+        type: integer
+      operator:
+        type: string
+      order_no:
+        type: string
+      shop_id:
+        type: string
+      sku_list:
+        items:
+          $ref: '#/definitions/vo.StockDeliveryRow'
+        type: array
+      type:
+        type: string
+    type: object
+  vo.StockDeliveryRow:
+    properties:
+      bar_code:
+        type: string
+      category_name:
+        type: string
+      cost:
+        type: integer
+      customer_id:
+        type: string
+      customer_name:
+        type: string
+      id:
+        description: 表单内顺序号，从1开始递增
+        type: integer
+      number:
+        type: integer
+      price:
+        type: integer
+      price_list:
+        additionalProperties:
+          $ref: '#/definitions/string'
+        type: object
+      product_id:
+        type: string
+      remark:
+        type: string
+      sku_guid:
+        type: string
+      sku_id:
+        type: string
+      sku_name:
+        type: string
+      sku_specs:
+        additionalProperties:
+          $ref: '#/definitions/string'
+        type: object
+      storage_id:
+        type: string
+      storage_name:
+        type: string
+      unit:
+        type: string
+    type: object
+  vo.StockDeliveryRowDetail:
+    properties:
+      bar_code:
+        type: string
+      category_name:
+        type: string
+      cost:
+        type: integer
+      customer_id:
+        type: string
+      customer_name:
+        type: string
+      delivery_no:
+        type: string
+      delivery_time:
+        type: string
+      id:
+        description: 表单内顺序号，从1开始递增
+        type: integer
+      number:
+        type: integer
+      operator:
+        type: string
+      order_no:
+        type: string
+      price:
+        type: integer
+      price_list:
+        additionalProperties:
+          $ref: '#/definitions/string'
+        type: object
+      product_id:
+        type: string
+      remark:
+        type: string
+      shop_id:
+        type: string
+      sku_guid:
+        type: string
+      sku_id:
+        type: string
+      sku_name:
+        type: string
+      sku_specs:
+        additionalProperties:
+          $ref: '#/definitions/string'
+        type: object
+      storage_id:
+        type: string
+      storage_name:
+        type: string
+      supplier_id:
+        type: string
+      type:
+        type: string
+      unit:
+        type: string
+    type: object
+  vo.StockEntryNote:
+    properties:
+      entry_no:
+        type: string
+      entry_time:
+        type: string
+      id:
+        description: 第一条记录的ID
+        type: integer
+      operator:
+        type: string
+      order_no:
+        type: string
+      shop_id:
+        type: string
+      sku_list:
+        items:
+          $ref: '#/definitions/vo.StockEntryRow'
+        type: array
+      type:
+        type: string
+    type: object
+  vo.StockEntryRow:
+    properties:
+      bar_code:
+        type: string
+      category_name:
+        type: string
+      id:
+        description: //表单内顺序号，从1开始递增
+        type: integer
+      number:
+        type: integer
+      price:
+        type: integer
+      price_list:
+        additionalProperties:
+          $ref: '#/definitions/string'
+        type: object
+      product_id:
+        type: string
+      remark:
+        type: string
+      sku_guid:
+        type: string
+      sku_id:
+        type: string
+      sku_name:
+        type: string
+      sku_specs:
+        additionalProperties:
+          $ref: '#/definitions/string'
+        type: object
+      storage_id:
+        type: string
+      storage_name:
+        type: string
+      supplier_id:
+        type: string
+      supplier_name:
+        type: string
+      unit:
+        type: string
+    type: object
+  vo.StockEntryRowDetail:
+    properties:
+      bar_code:
+        type: string
+      category_name:
+        type: string
+      entry_no:
+        type: string
+      entry_time:
+        type: string
+      id:
+        description: //表单内顺序号，从1开始递增
+        type: integer
+      number:
+        type: integer
+      operator:
+        type: string
+      order_no:
+        type: string
+      price:
+        type: integer
+      price_list:
+        additionalProperties:
+          $ref: '#/definitions/string'
+        type: object
+      product_id:
+        type: string
+      remark:
+        type: string
+      shop_id:
+        type: string
+      sku_guid:
+        type: string
+      sku_id:
+        type: string
+      sku_name:
+        type: string
+      sku_specs:
+        additionalProperties:
+          $ref: '#/definitions/string'
+        type: object
+      storage_id:
+        type: string
+      storage_name:
+        type: string
+      supplier_id:
+        type: string
+      supplier_name:
+        type: string
+      type:
+        type: string
+      unit:
+        type: string
+    type: object
+  vo.StockMoveRowDetail:
+    properties:
+      bar_code:
+        type: string
+      from_storage_id:
+        type: string
+      from_storage_name:
+        type: string
+      id:
+        type: integer
+      move_no:
+        type: string
+      move_time:
+        type: string
+      number:
+        type: integer
+      operator:
+        type: string
+      price_list:
+        additionalProperties:
+          $ref: '#/definitions/string'
+        type: object
+      product_id:
+        type: string
+      remark:
+        type: string
+      shop_id:
+        type: string
+      sku_guid:
+        type: string
+      sku_id:
+        type: string
+      sku_name:
+        type: string
+      sku_specs:
+        additionalProperties:
+          $ref: '#/definitions/string'
+        type: object
+      to_storage_id:
+        type: string
+      to_storage_name:
+        type: string
+      unit:
+        type: string
+    type: object
+info:
+  contact: {}
+  license: {}
+  version: '0.0.1 ( 进销存统一网关模块，服务名: jxc-api )'
+paths:
+  /category/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除商品分类接口
+      parameters:
+      - description: 商品分类记录号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除商品分类接口
+  /category/down:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 下移商品分类接口
+      parameters:
+      - description: 商品分类记录号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductCategory'
+      summary: 下移商品分类接口
+  /category/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 查询商品分类接口
+      parameters:
+      - description: 商品分类记录号
+        in: formData
+        name: id
+        type: integer
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 商品分类自定义编号
+        in: formData
+        name: categoryId
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductCategory'
+      summary: 查询商品分类接口
+  /category/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 按菜单层级方式或路径方式列出商品分类
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 商品分类号，按编号查完整分类路径
+        in: formData
+        name: categoryId
+        type: string
+      - description: 上级分类编号
+        in: formData
+        name: parent
+        type: string
+      - description: 分类层级
+        in: formData
+        name: level
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductCategory'
+      summary: 列出商品的所有商品分类接口
+  /category/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存商品分类接口
+      parameters:
+      - description: 商户账户
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品分类名称
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: 商品分类自定义编号,默认自动生成
+        in: formData
+        name: categoryId
+        type: string
+      - description: 上级分类编号，第一级无上级分类的填0
+        in: formData
+        name: parent
+        required: true
+        type: string
+      - description: 商品分类层级，从第1级向下
+        in: formData
+        name: level
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductCategory'
+      summary: 保存商品分类接口
+  /category/up:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 上移商品分类接口
+      parameters:
+      - description: 商品分类记录号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductCategory'
+      summary: 上移商品分类接口
+  /category/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改商品分类接口
+      parameters:
+      - description: 商品分类编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: 商品分类名称
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: 商品分类自定义编号
+        in: formData
+        name: categoryId
+        type: string
+      - description: 上级分类编号，第一级无上级分类的填0
+        in: formData
+        name: parent
+        type: string
+      - description: 商品分类层级，从第1级向下
+        in: formData
+        name: level
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductCategory'
+      summary: 修改商品分类接口
+  /delivery/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除出库单记录,对应的出库单库存也会被扣除
+      parameters:
+      - description: 出库单记录号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除出库单记录接口
+  /delivery/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出出库单,直接按条件查出所有符合条件的出库单记录，可分页
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        type: string
+      - description: 出库单号
+        in: formData
+        name: deliveryNo
+        type: string
+      - description: 外部销售单号
+        in: formData
+        name: orderNo
+        type: string
+      - description: 客户账号
+        in: formData
+        name: customerId
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        type: string
+      - description: 开始日期，格式为 yyyy-MM-dd
+        in: formData
+        name: startTime
+        type: string
+      - description: 结束日期，格式为yyyy-MM-dd
+        in: formData
+        name: endTime
+        type: string
+      - description: 分页页号参数，第几页，若要分页，页号>=1，否则为0
+        in: formData
+        name: page
+        type: integer
+      - description: 分页大小参数
+        in: formData
+        name: size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/vo.StockDeliveryRowDetail'
+      summary: 列出出库单接口
+  /delivery/note/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 按出库单号查询整个出库单，其中包含公共参数与多条货品出库记录
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 出库单号
+        in: formData
+        name: deliveryNo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/vo.StockDeliveryNote'
+      summary: 按出库单号查询整个出库单接口
+  /delivery/note/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存一个完整出库单，包含多条货品记录，并且自动增加相应货品的库存
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 出库单号，不传时默认自动生成一个单号
+        in: formData
+        name: deliveryNo
+        type: string
+      - description: 出库类型
+        in: formData
+        name: type
+        required: true
+        type: string
+      - description: 外部销售单号
+        in: formData
+        name: orderNo
+        type: string
+      - description: 操作员名称
+        in: formData
+        name: operator
+        required: true
+        type: string
+      - description: 出库货品清单列表，JSON数组格式，必须包含以下字段:sku_id,unit,price,storage_id,customer_id,customer_name,number,remark字段
+        in: formData
+        name: stockDeliveryRowList
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockDelivery'
+      summary: 按一个完整出库单出库操作接口
+  /delivery/row/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存出库单的单一货品记录,商品自动增加到库存
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        required: true
+        type: string
+      - description: 出库单号
+        in: formData
+        name: deliveryNo
+        required: true
+        type: string
+      - description: 出库类型
+        in: formData
+        name: type
+        required: true
+        type: string
+      - description: 货品单位
+        in: formData
+        name: unit
+        required: true
+        type: string
+      - description: 外部销售单号
+        in: formData
+        name: orderNo
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        required: true
+        type: string
+      - description: 客户账号
+        in: formData
+        name: customerId
+        type: string
+      - description: 客户名称
+        in: formData
+        name: customerName
+        type: string
+      - description: 操作员名称
+        in: formData
+        name: operator
+        required: true
+        type: string
+      - description: 备注
+        in: formData
+        name: remark
+        type: string
+      - description: 出库数量，必须大于0
+        in: formData
+        name: number
+        required: true
+        type: integer
+      - description: 出库价，单位为分
+        in: formData
+        name: price
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockDelivery'
+      summary: 按单一货品记录出库操作接口
+  /delivery/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改出库单的单一货品记录,如果修改了数量、单位，则会自动调整库存数量，若修改了价格，则会自动重新计算成本价
+      parameters:
+      - description: 记录号
+        in: formData
+        name: id
+        required: true
+        type: string
+      - description: 货品单位
+        in: formData
+        name: unit
+        type: string
+      - description: 外部销售单号
+        in: formData
+        name: orderNo
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        type: string
+      - description: 客户账号
+        in: formData
+        name: customerId
+        type: string
+      - description: 客户名称
+        in: formData
+        name: customerName
+        type: string
+      - description: 操作员名称
+        in: formData
+        name: operator
+        type: string
+      - description: 备注
+        in: formData
+        name: remark
+        type: string
+      - description: 出库数量，若需修改则大于0
+        in: formData
+        name: number
+        type: integer
+      - description: 出库价，单位为分
+        in: formData
+        name: price
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockDelivery'
+      summary: 修改出库单的单一货品记录接口
+  /entry/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除入库单记录,对应的入库单库存也会被扣除
+      parameters:
+      - description: 入库单记录号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除入库单记录接口
+  /entry/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出入库单,直接按条件查出所有符合条件的入库单记录，可分页
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        type: string
+      - description: 入库单号
+        in: formData
+        name: entryNo
+        type: string
+      - description: 外部销售单号
+        in: formData
+        name: orderNo
+        type: string
+      - description: 客户账号
+        in: formData
+        name: supplierId
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        type: string
+      - description: 开始日期，格式为 yyyy-MM-dd
+        in: formData
+        name: startTime
+        type: string
+      - description: 结束日期，格式为yyyy-MM-dd
+        in: formData
+        name: endTime
+        type: string
+      - description: 分页页号参数，第几页，若要分页，页号>=1，否则为0
+        in: formData
+        name: page
+        type: integer
+      - description: 分页大小参数
+        in: formData
+        name: size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/vo.StockEntryRowDetail'
+      summary: 列出入库单接口
+  /entry/note/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 按入库单号查询整个入库单，其中包含公共参数与多条货品入库记录
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 入库单号
+        in: formData
+        name: entryNo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/vo.StockEntryNote'
+      summary: 按入库单号查询整个入库单接口
+  /entry/note/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存一个完整入库单，包含多条货品记录，并且自动增加相应货品的库存
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 入库单号，不传时默认自动生成一个单号
+        in: formData
+        name: entryNo
+        type: string
+      - description: 入库类型
+        in: formData
+        name: type
+        required: true
+        type: string
+      - description: 外部销售单号
+        in: formData
+        name: orderNo
+        type: string
+      - description: 操作员名称
+        in: formData
+        name: operator
+        required: true
+        type: string
+      - description: 入库货品清单列表，JSON数组格式，必须包含以下字段:sku_id,unit,price,storage_id,supplier_id,number,remark字段
+        in: formData
+        name: stockEntryRowList
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockEntry'
+      summary: 按完整入库单一次性入库操作接口
+  /entry/row/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存入库单的单一货品记录,商品自动增加到库存
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        required: true
+        type: string
+      - description: 入库单号
+        in: formData
+        name: entryNo
+        required: true
+        type: string
+      - description: 入库类型
+        in: formData
+        name: type
+        required: true
+        type: string
+      - description: 货品单位
+        in: formData
+        name: unit
+        required: true
+        type: string
+      - description: 外部销售单号
+        in: formData
+        name: orderNo
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        required: true
+        type: string
+      - description: 客户账号
+        in: formData
+        name: supplierId
+        type: string
+      - description: 操作员名称
+        in: formData
+        name: operator
+        required: true
+        type: string
+      - description: 备注
+        in: formData
+        name: remark
+        type: string
+      - description: 入库数量，必须大于0
+        in: formData
+        name: number
+        required: true
+        type: integer
+      - description: 入库价，单位为分
+        in: formData
+        name: price
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockEntry'
+      summary: 按单一货品入库操作接口
+  /entry/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改入库单的单一货品记录,如果修改了数量、单位，则会自动调整库存数量，若修改了价格，则会自动重新计算成本价
+      parameters:
+      - description: 记录号
+        in: formData
+        name: id
+        required: true
+        type: string
+      - description: 货品单位
+        in: formData
+        name: unit
+        type: string
+      - description: 外部销售单号
+        in: formData
+        name: orderNo
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        type: string
+      - description: 客户账号
+        in: formData
+        name: supplierId
+        type: string
+      - description: 操作员名称
+        in: formData
+        name: operator
+        type: string
+      - description: 备注
+        in: formData
+        name: remark
+        type: string
+      - description: 入库数量，若需修改则大于0
+        in: formData
+        name: number
+        type: integer
+      - description: 入库价，单位为分
+        in: formData
+        name: price
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockEntry'
+      summary: 修改入库单的单一货品记录接口
+  /move/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除移库单记录,对应的移库单库存也会还原，从目标库转移到原库
+      parameters:
+      - description: 移库单记录号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除移库单记录接口
+  /move/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 按移库单号和货品编码查询一条移库单记录
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 移库单号
+        in: formData
+        name: moveNo
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/vo.StockMoveRowDetail'
+      summary: 按移库单号和货品编码查询一条移库单记录接口
+  /move/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出移库单,直接按条件查出所有符合条件的移库单记录，可分页
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        type: string
+      - description: 移库单号
+        in: formData
+        name: moveNo
+        type: string
+      - description: 原仓库编码
+        in: formData
+        name: fromStorageId
+        type: string
+      - description: 目标仓库编码
+        in: formData
+        name: toStorageId
+        type: string
+      - description: 开始日期，格式为 yyyy-MM-dd
+        in: formData
+        name: startTime
+        type: string
+      - description: 结束日期，格式为yyyy-MM-dd
+        in: formData
+        name: endTime
+        type: string
+      - description: 分页页号参数，第几页，若要分页，页号>=1，否则为0
+        in: formData
+        name: page
+        type: integer
+      - description: 分页大小参数
+        in: formData
+        name: size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/vo.StockMoveRowDetail'
+      summary: 列出移库单接口
+  /move/stock:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 完成移库操作过程，从原库出库，到目标库入库，并且保存移库单
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        required: true
+        type: string
+      - description: 移库单号
+        in: formData
+        name: moveNo
+        type: string
+      - description: 原仓库编码
+        in: formData
+        name: fromStorageId
+        type: string
+      - description: 目标仓库编码
+        in: formData
+        name: toStorageId
+        type: string
+      - description: 货品单位
+        in: formData
+        name: unit
+        required: true
+        type: string
+      - description: 操作员名称
+        in: formData
+        name: operator
+        required: true
+        type: string
+      - description: 备注
+        in: formData
+        name: remark
+        type: string
+      - description: 移库数量，必须大于0
+        in: formData
+        name: number
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockMove'
+      summary: 移库操作接口
+  /product/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除商品信息接口
+      parameters:
+      - description: 商品编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除商品信息接口
+  /product/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 查询商品信息接口
+      parameters:
+      - description: 商品记录号
+        in: formData
+        name: id
+        type: integer
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 商品自定义编号
+        in: formData
+        name: productId
+        type: string
+      - description: 商品条码
+        in: formData
+        name: barCode
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductInfo'
+      summary: 查询商品信息接口
+  /product/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出商品信息接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 模糊搜索关键字：商品名称/全拼(小写)/拼音首字母(大写)
+        in: formData
+        name: keyword
+        type: string
+      - description: 商品分类编号
+        in: formData
+        name: categoryId
+        type: string
+      - description: 分页页号参数，第几页，若要分页，页号>=1，否则为0
+        in: formData
+        name: page
+        type: integer
+      - description: 分页大小参数
+        in: formData
+        name: size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductInfo'
+      summary: 列出商品信息接口
+  /product/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存商品信息接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品分类编号
+        in: formData
+        name: categoryId
+        required: true
+        type: string
+      - description: 商品名称
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: 商品自定义编号，默认系统自动生成
+        in: formData
+        name: productId
+        type: string
+      - description: 商品条码
+        in: formData
+        name: barCode
+        type: string
+      - description: 商品基础单位，最小单位
+        in: formData
+        name: baseUnit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductInfo'
+      summary: 保存商品信息接口
+  /product/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改商品信息接口
+      parameters:
+      - description: 商品编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: 商品分类编码
+        in: formData
+        name: categoryId
+        type: string
+      - description: 商品自定义编号
+        in: formData
+        name: productId
+        type: string
+      - description: 商品名称
+        in: formData
+        name: name
+        type: string
+      - description: 商品基础单位，最小单位
+        in: formData
+        name: baseUnit
+        type: string
+      - description: 商品条码
+        in: formData
+        name: barCode
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductInfo'
+      summary: 修改商品信息接口
+  /sku/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除货品接口
+      parameters:
+      - description: 货品全局编码
+        in: formData
+        name: skuGuid
+        type: string
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 货品自定义编码
+        in: formData
+        name: skuId
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除货品接口
+  /sku/down:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 下移货品接口
+      parameters:
+      - description: 货品全局编码
+        in: formData
+        name: skuGuid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSku'
+      summary: 下移货品接口
+  /sku/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 查询货品接口
+      parameters:
+      - description: 货品全局编码
+        in: formData
+        name: skuGuid
+        type: string
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 货品自定义编码
+        in: formData
+        name: skuId
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSku'
+      summary: 查询货品接口
+  /sku/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 按自由组合方式与关键字模糊查询方式列出货品
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 搜索关键字，从商品名称、全拼、拼音首字母
+        in: formData
+        name: keyword
+        type: string
+      - description: 商品规格，JSON格式
+        in: formData
+        name: specs
+        type: string
+      - description: 商品分类编号
+        in: formData
+        name: categoryId
+        type: integer
+      - description: 商品编号
+        in: formData
+        name: productId
+        type: integer
+      - description: 货品上架状态
+        in: formData
+        name: status
+        type: integer
+      - description: 分页页号参数，第几页，若要分页，页号>=1，否则为0
+        in: formData
+        name: page
+        type: integer
+      - description: 分页大小参数
+        in: formData
+        name: size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSku'
+      summary: 列出商品的所有货品接口
+  /sku/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存货品接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        required: true
+        type: string
+      - description: 货品规格，JSON格式，{<规格名>:<格式值>}
+        in: formData
+        name: specs
+        required: true
+        type: string
+      - description: 货品自定义编码，不传则自动随机生成
+        in: formData
+        name: skuId
+        type: string
+      - description: 货品全局唯一编码，默认不传，随机生成32位码
+        in: formData
+        name: skuGuid
+        type: string
+      - description: 货品名称，默认为商品名+规格值
+        in: formData
+        name: name
+        type: string
+      - description: 货品报价表，JSON格式
+        in: formData
+        name: prices
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSku'
+      summary: 保存货品接口
+  /sku/up:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 上移货品接口
+      parameters:
+      - description: 货品全局编码
+        in: formData
+        name: skuGuid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSku'
+      summary: 上移货品接口
+  /sku/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改货品接口
+      parameters:
+      - description: 货品全局唯一编码
+        in: formData
+        name: skuGuid
+        required: true
+        type: string
+      - description: 货品自定义编码，不传则自动随机生成
+        in: formData
+        name: skuId
+        type: string
+      - description: 商品名称
+        in: formData
+        name: name
+        type: string
+      - description: 货品名称
+        in: formData
+        name: skuName
+        type: string
+      - description: 货品条码
+        in: formData
+        name: barCode
+        type: string
+      - description: 货品规格，JSON格式，{<规格名>:<格式值>}
+        in: formData
+        name: specs
+        required: true
+        type: string
+      - description: 货品报价表，JSON格式
+        in: formData
+        name: prices
+        type: string
+      - description: 货品状态，0-禁售 1-可售
+        in: formData
+        name: status
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSku'
+      summary: 修改货品接口
+  /specs/add:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 添加商品规格值接口
+      parameters:
+      - description: 商品规格编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: 单个商品规格值
+        in: formData
+        name: value
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSpecs'
+      summary: 添加商品规格值接口
+  /specs/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除商品规格指标接口
+      parameters:
+      - description: 商品规格编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除商品规格指标接口
+  /specs/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 查询商品的规格指标接口
+      parameters:
+      - description: 商品规格编号
+        in: formData
+        name: id
+        type: integer
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        type: string
+      - description: 商品规格名
+        in: formData
+        name: specs
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSpecs'
+      summary: 查询商品的规格指标接口
+  /specs/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出商品的所有规格指标接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品自定义编码
+        in: formData
+        name: productId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSpecs'
+      summary: 列出商品的所有规格指标接口
+  /specs/remove:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 移除商品规格值接口
+      parameters:
+      - description: 商品规格编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: 要移除的单个商品规格值
+        in: formData
+        name: value
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSpecs'
+      summary: 移除商品规格值接口
+  /specs/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存规格指标接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        required: true
+        type: string
+      - description: 商品规格名
+        in: formData
+        name: specs
+        required: true
+        type: string
+      - description: 商品规格值列表，JSON数组格式
+        in: formData
+        name: values
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSpecs'
+      summary: 保存规格指标接口
+  /specs/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改商品规格指标接口
+      parameters:
+      - description: 商品规格编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        type: string
+      - description: 商品规格名
+        in: formData
+        name: specs
+        type: string
+      - description: 商品规格值列表，JSON数组格式
+        in: formData
+        name: values
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSpecs'
+      summary: 修改商品规格指标接口
+  /stock/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 获取货品在特定仓库中的库存信息
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        required: true
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/vo.SkuStockNote'
+      summary: 获取货品在特定仓库中的库存信息
+  /stock/inout:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 货品入库/出库接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        required: true
+        type: string
+      - description: 入库/出库的货品单位
+        in: formData
+        name: unit
+        required: true
+        type: string
+      - description: 入库/出库的货品数量
+        in: formData
+        name: number
+        required: true
+        type: integer
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        required: true
+        type: string
+      - description: 本次入库的货品强制设定加权均价，不传时由系统计算
+        in: formData
+        name: cost
+        type: integer
+      - description: 本次入库的货品进货价，出库时不传
+        in: formData
+        name: price
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.SkuStock'
+      summary: 货品入库/出库接口
+  /stock/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出商品/货品的库存
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品编码
+        in: formData
+        name: skuId
+        type: string
+      - description: 搜索关键字，从商品名称中查询
+        in: formData
+        name: name
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        type: string
+      - description: 分页页号参数，第几页，若要分页，页号>=1，否则为0
+        in: formData
+        name: page
+        type: integer
+      - description: 分页大小参数
+        in: formData
+        name: size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/vo.SkuStockNote'
+      summary: 列出商品/货品的库存接口
+  /stock/num:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 获取指定货品/商品的库存量
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 货品自定义编号
+        in: formData
+        name: skuId
+        type: string
+      - description: 商户仓库编号
+        in: formData
+        name: storageId
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 获取指定货品/商品的库存量
+  /storage/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除仓库接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 自定义仓库编码
+        in: formData
+        name: storageId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ShopStorage'
+      summary: 删除仓库接口
+  /storage/down:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 仓库顺序号向下移一个位置接口
+      parameters:
+      - description: 商户号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 仓库编号
+        in: formData
+        name: storageId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ShopStorage'
+      summary: 仓库顺序号向下移一个位置接口
+  /storage/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 获取仓库接口
+      parameters:
+      - description: 商户号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 仓库编号
+        in: formData
+        name: storageId
+        type: string
+      - description: 仓库名称
+        in: formData
+        name: name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ShopStorage'
+      summary: 获取仓库接口
+  /storage/last:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 获取指定仓库最后修改信息接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 仓库编号
+        in: formData
+        name: storageId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.StockDelivery'
+      summary: 获取指定仓库最后修改信息接口
+  /storage/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出商户的所有仓库接口
+      parameters:
+      - description: 商户号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ShopStorage'
+      summary: 列出商户的所有仓库接口
+  /storage/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存仓库接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 仓库名称
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: 自定义仓库编码，不传则自动生成
+        in: formData
+        name: storageId
+        type: string
+      - description: 备注
+        in: formData
+        name: remark
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ShopStorage'
+      summary: 保存仓库接口
+  /storage/up:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 仓库顺序号向上移一个位置接口
+      parameters:
+      - description: 商户号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 仓库编号
+        in: formData
+        name: storageId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ShopStorage'
+      summary: 仓库顺序号向上移一个位置接口
+  /storage/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 更新仓库接口
+      parameters:
+      - description: 仓库记录序列号，若不传时则不可修改自定义仓库编码
+        in: formData
+        name: id
+        type: integer
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 自定义仓库编码
+        in: formData
+        name: storageId
+        type: string
+      - description: 仓库名称
+        in: formData
+        name: name
+        type: string
+      - description: 备注
+        in: formData
+        name: remark
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ShopStorage'
+      summary: 更新仓库接口
+  /supplier/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除商品供应商接口
+      parameters:
+      - description: 商品供应商编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除商品供应商接口
+  /supplier/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 查询商品的供应商接口
+      parameters:
+      - description: 商品供应商记录号
+        in: formData
+        name: id
+        type: integer
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        type: string
+      - description: 商品供应商账号
+        in: formData
+        name: supplierId
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSupplier'
+      summary: 查询商品的供应商接口
+  /supplier/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出商品的所有供应商接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSupplier'
+      summary: 列出商品的所有供应商接口
+  /supplier/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存供应商接口
+      parameters:
+      - description: 商品编号
+        in: formData
+        name: productId
+        required: true
+        type: string
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品供应商账号
+        in: formData
+        name: supplierId
+        required: true
+        type: string
+      - description: 商品供应商名称
+        in: formData
+        name: supplierName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSupplier'
+      summary: 保存供应商接口
+  /supplier/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改商品供应商接口
+      parameters:
+      - description: 商品供应商id
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: 商品编号
+        in: formData
+        name: productId
+        type: string
+      - description: 商户账号
+        in: formData
+        name: shopId
+        type: string
+      - description: 商品供应商账号
+        in: formData
+        name: supplierId
+        type: string
+      - description: 商品供应商名称
+        in: formData
+        name: supplierName
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductSupplier'
+      summary: 修改商品供应商接口
+  /type/delivery/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除出库类型接口
+      parameters:
+      - description: 出库类型编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.DeliveryType'
+      summary: 删除出库类型接口
+  /type/delivery/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出商户的所有出库类型接口
+      parameters:
+      - description: 商户号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.DeliveryType'
+      summary: 列出商户的所有出库类型接口
+  /type/delivery/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存出库类型接口
+      parameters:
+      - description: 商户号
+        in: formData
+        name: shopId
+        type: string
+      - description: 出库类型
+        in: formData
+        name: deliveryType
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.DeliveryType'
+      summary: 保存出库类型接口
+  /type/delivery/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 更新出库类型接口
+      parameters:
+      - description: 出库类型编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: 出库类型
+        in: formData
+        name: deliveryType
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.DeliveryType'
+      summary: 更新出库类型接口
+  /type/entry/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除入库类型接口
+      parameters:
+      - description: 入库类型编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.EntryType'
+      summary: 删除入库类型接口
+  /type/entry/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出商户的所有入库类型接口
+      parameters:
+      - description: 商户号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.EntryType'
+      summary: 列出商户的所有入库类型接口
+  /type/entry/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存入库类型接口
+      parameters:
+      - description: 商户号
+        in: formData
+        name: shopId
+        type: string
+      - description: 入库类型
+        in: formData
+        name: entryType
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.EntryType'
+      summary: 保存入库类型接口
+  /type/entry/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 更新入库类型接口
+      parameters:
+      - description: 入库类型编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: 入库类型
+        in: formData
+        name: entryType
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.EntryType'
+      summary: 更新入库类型接口
+  /unit/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除单位接口
+      parameters:
+      - description: 单位编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.Unit'
+      summary: 删除单位接口
+  /unit/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出商户的所有单位接口
+      parameters:
+      - description: 商户号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.Unit'
+      summary: 列出商户的所有单位接口
+  /unit/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存单位接口
+      parameters:
+      - description: 商户号
+        in: formData
+        name: shopId
+        type: string
+      - description: 单位
+        in: formData
+        name: unit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.Unit'
+      summary: 保存单位接口
+  /unit/scale/del:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 删除商品单位换算规则接口
+      parameters:
+      - description: 商品单位换算编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/common.Result'
+      summary: 删除商品单位换算规则接口
+  /unit/scale/get:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 查询商品的单位换算规则接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        required: true
+        type: string
+      - description: 商品辅助单位，较大的单位
+        in: formData
+        name: unit
+        required: true
+        type: string
+      - description: 商品基础单位，最小单位
+        in: formData
+        name: baseUnit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductUnit'
+      summary: 查询商品的单位换算规则接口
+  /unit/scale/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 列出商品的所有单位换算规则接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductUnit'
+      summary: 列出商品的所有单位换算规则接口
+  /unit/scale/save:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 保存单位换算规则接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        required: true
+        type: string
+      - description: '商品单位换算比例值: 1辅助单位=scale个基础单位'
+        in: formData
+        name: scale
+        required: true
+        type: integer
+      - description: 商品辅助单位，较大的单位
+        in: formData
+        name: unit
+        required: true
+        type: string
+      - description: 商品基础单位，最小单位
+        in: formData
+        name: baseUnit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductUnit'
+      summary: 保存单位换算规则接口
+  /unit/scale/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 修改商品单位换算规则接口
+      parameters:
+      - description: 商户账号
+        in: formData
+        name: shopId
+        required: true
+        type: string
+      - description: 商品编号
+        in: formData
+        name: productId
+        required: true
+        type: string
+      - description: '商品单位换算比例值: 1辅助单位=scale个基础单位'
+        in: formData
+        name: scale
+        required: true
+        type: integer
+      - description: 商品辅助单位，较大的单位
+        in: formData
+        name: unit
+        required: true
+        type: string
+      - description: 商品基础单位，最小单位
+        in: formData
+        name: baseUnit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.ProductUnit'
+      summary: 修改商品单位换算规则接口
+  /unit/update:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 更新单位接口
+      parameters:
+      - description: 单位编号
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: 单位
+        in: formData
+        name: unit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"status\":1,<br>\"msg\":\"成功\",<br>\"data\":{},<br>\"page\":null}'
+          schema:
+            $ref: '#/definitions/model.Unit'
+      summary: 更新单位接口
+swagger: "2.0"
